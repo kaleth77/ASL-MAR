@@ -206,24 +206,29 @@ let servicio = document.getElementById("servicio").value;
 let comentario = document.getElementById("comentario").value;
 
 let mensaje =
-`✨ RESERVA DE CITA ✨
+"*RESERVA DE CITA - ASL MAR NAIL STUDIO*" +
 
-👤 Cliente: ${nombre}
-📱 Contacto: ${telefono}
+"\n\nCliente: " + nombre +
 
-📅 Fecha: ${fecha}
-🕒 Hora: ${hora}
-💅 Servicio: ${servicio}
+"\nTelefono: " + telefono +
 
-📝 Detalles:
-${comentario}
+"\nFecha: " + fecha +
 
-💖 Asl-Mar Nail Studio`;
+"\nHora: " + hora +
 
-window.open(
-`https://wa.me/573013270489?text=${encodeURIComponent(mensaje)}`,
-'_blank'
-);
+"\nServicio: " + servicio +
+
+"\n\nDetalles:" +
+
+"\n" + comentario +
+
+"\n\nGracias por agendar tu cita.";
+
+const url =
+"https://api.whatsapp.com/send?phone=573013270489&text=" +
+encodeURIComponent(mensaje);
+
+window.open(url, "_blank");
 
 });
 
