@@ -206,16 +206,19 @@ let servicio = document.getElementById("servicio").value;
 let comentario = document.getElementById("comentario").value;
 
 let mensaje =
-`✨ NUEVA CITA ✨
+`✨ RESERVA DE CITA ✨
 
-👤 Nombre: ${nombre}
-📞 Teléfono: ${telefono}
+👤 Cliente: ${nombre}
+📱 Contacto: ${telefono}
+
 📅 Fecha: ${fecha}
-⏰ Hora: ${hora}
+🕒 Hora: ${hora}
 💅 Servicio: ${servicio}
 
-📝 Comentarios:
-${comentario}`;
+📝 Detalles:
+${comentario}
+
+💖 Asl-Mar Nail Studio`;
 
 window.open(
 `https://wa.me/573013270489?text=${encodeURIComponent(mensaje)}`,
