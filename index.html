@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Asl-Mar Nail Studio</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: 'Georgia', serif;
+}
+
+body{
+background:#1d1d1d;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:450px;
+background:#2b2b2b;
+border:2px solid #c9a86a;
+border-radius:30px;
+padding:25px;
+color:white;
+box-shadow:0 0 25px rgba(201,168,106,.3);
+}
+
+.logo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.logo h1{
+font-size:70px;
+color:#d8b57a;
+}
+
+.logo h2{
+font-size:30px;
+font-weight:300;
+}
+
+.logo p{
+color:#d8b57a;
+letter-spacing:3px;
+}
+
+.titulo{
+text-align:center;
+margin:25px 0;
+}
+
+.titulo h3{
+font-size:25px;
+color:#d8b57a;
+}
+
+.titulo h1{
+font-size:55px;
+color:#d8b57a;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#f5f5f5;
+font-size:16px;
+}
+
+.info{
+margin-top:20px;
+font-size:14px;
+line-height:1.5;
+}
+
+.info p{
+margin-bottom:12px;
+}
+
+.btn{
+width:100%;
+margin-top:20px;
+padding:15px;
+background:#c9a86a;
+border:none;
+border-radius:12px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:14px;
+}
+
+.footer a{
+color:#d8b57a;
+text-decoration:none;
+}
+
+@media(max-width:500px){
+.logo h1{
+font-size:55px;
+}
+
+.titulo h1{
+font-size:42px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+<h1>AM</h1>
+<h2>asl-mar</h2>
+<p>NAIL STUDIO</p>
+</div>
+
+<div class="titulo">
+<h3>AGENDA TU</h3>
+<h1>CITA</h1>
+</div>
+
+<form id="formulario">
+
+<input type="text" id="nombre" placeholder="Nombre completo" required>
+
+<input type="tel" id="telefono" placeholder="Número de teléfono" required>
+
+<input type="date" id="fecha" required>
+
+<input type="time" id="hora" required>
+
+<select id="servicio" required>
+<option value="">Seleccione un servicio</option>
+<option>Uñas Acrílicas</option>
+<option>Semipermanente</option>
+<option>Polygel</option>
+<option>Retiro</option>
+<option>Pedicure</option>
+<option>Manicure</option>
+</select>
+
+<textarea id="comentario" rows="4" placeholder="Diseño o información adicional"></textarea>
+
+<button type="submit" class="btn">
+AGENDAR POR WHATSAPP
+</button>
+
+</form>
+
+<div class="info">
+
+<p>💛 Se solicita un anticipo del 50% para confirmar la cita.</p>
+
+<p>💛 Tolerancia máxima de 20 minutos. Después de este tiempo la cita será cancelada.</p>
+
+<p>💛 Enviar previamente el diseño que deseas realizar.</p>
+
+</div>
+
+<div class="footer">
+Instagram:
+<a href="https://instagram.com/asl.mar_nail_studio" target="_blank">
+@asl.mar_nail_studio
+</a>
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("formulario").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let nombre = document.getElementById("nombre").value;
+let telefono = document.getElementById("telefono").value;
+let fecha = document.getElementById("fecha").value;
+let hora = document.getElementById("hora").value;
+let servicio = document.getElementById("servicio").value;
+let comentario = document.getElementById("comentario").value;
+
+let mensaje =
+`✨ NUEVA CITA ✨
+
+👤 Nombre: ${nombre}
+📞 Teléfono: ${telefono}
+📅 Fecha: ${fecha}
+⏰ Hora: ${hora}
+💅 Servicio: ${servicio}
+
+📝 Comentarios:
+${comentario}`;
+
+window.open(
+`https://wa.me/573013270489?text=${encodeURIComponent(mensaje)}`,
+'_blank'
+);
+
+});
+
+</script>
+
+</body>
+</html>
