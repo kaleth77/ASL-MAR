@@ -194,6 +194,10 @@ form.addEventListener("submit", async function(e){
   btnEnviar.disabled = true;
   mostrarMensaje("Verificando disponibilidad...", "ok");
 
+  // Abrimos la pestaña YA (vacía), como resultado directo del click.
+  // Así el navegador no la bloquea. Le ponemos la URL real más adelante.
+  const ventanaWhatsapp = window.open("", "_blank");
+
   try {
     // 1) Verificar si la hora está libre
     const resVerificar = await fetch(
@@ -203,6 +207,7 @@ form.addEventListener("submit", async function(e){
 
     if (!dataVerificar.disponible) {
       mostrarMensaje("❌ Esa hora ya está reservada. Por favor elige otra.", "error");
+      if (ventanaWhatsapp) ventanaWhatsapp.close();
       btnEnviar.disabled = false;
       return;
     }
@@ -216,11 +221,12 @@ form.addEventListener("submit", async function(e){
 
     if (!dataGuardar.ok) {
       mostrarMensaje("❌ " + dataGuardar.mensaje, "error");
+      if (ventanaWhatsapp) ventanaWhatsapp.close();
       btnEnviar.disabled = false;
       return;
     }
 
-    // 3) Abrir WhatsApp con los datos
+    // 3) Redirigir esa misma pestaña ya abierta hacia WhatsApp
     let mensaje =
       "\uD83D\uDCCC *RESERVA DE CITA*" +
       "\n\n\uD83D\uDE4B Nombre: " + nombre +
@@ -234,12 +240,19 @@ form.addEventListener("submit", async function(e){
     const url =
       "https://api.whatsapp.com/send?phone=573013270489&text=" +
       encodeURIComponent(mensaje);
-    window.open(url, "_blank");
+
+    if (ventanaWhatsapp) {
+      ventanaWhatsapp.location.href = url;
+    } else {
+      // Si el navegador de todas formas bloqueó la ventana, lo intentamos de nuevo
+      window.open(url, "_blank");
+    }
 
     mostrarMensaje("✅ ¡Cita agendada con éxito!", "ok");
     form.reset();
 
   } catch (error) {
+    if (ventanaWhatsapp) ventanaWhatsapp.close();
     mostrarMensaje("❌ Error al conectar con el servidor. Intenta de nuevo.", "error");
   }
 
